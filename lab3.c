@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 
  
 #define ALPHABET_SIZE 26 
-
+ 
 #define MSG printf("Окей\n") 
  
  
@@ -9,7 +9,6 @@
 #include <stdlib.h> 
 #include <string.h> 
 #include <locale.h> 
- 
  
  
  
@@ -25,16 +24,17 @@ void printUniqueCharacters(char* str) {
   } 
   str++; 
  } 
- 
- printf("Unique characters: "); 
- for (int i = 0; i < ALPHABET_SIZE; i++) { 
-  if (count[i] == 1) { 
-   printf("%c ", i + 'a'); 
-  } 
- } 
- 
- printf("\n"); 
 } 
+void outputUni (int) { 
+  printf("Унильные символы: "); 
+  for (int i = 0; i < ALPHABET_SIZE; i++) { 
+   if (count[i] == 1) { 
+    printf("%c ", i + 'a'); 
+   } 
+  } 
+ 
+  printf("\n"); 
+ } 
  
 void menu() { 
  char str[100]; 
