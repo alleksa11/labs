@@ -2,6 +2,6 @@
 
 int main(ф)
 {
-printf("hell");
+printf("helloo");
 return 0;
 }
