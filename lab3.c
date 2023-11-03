@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-int main()
+int main(ф)
 {
 printf("hell");
 return 0;
