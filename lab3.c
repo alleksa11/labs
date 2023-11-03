@@ -1,48 +1,75 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
+#define _CRT_SECURE_NO_WARNINGS 
+ 
+#define ALPHABET_SIZE 26 
 
-int cmpfunc(const void *a, const void *b) {
-    return (*(char *)a - *(char *)b);
-}
-
-void printUniqueCharacters(char arr[], int size) {
-    // Сортировка массива символов
-    qsort(arr, size, sizeof(char), cmpfunc);
-
-    printf("Символы, которые встречаются по одному разу в алфавитном порядке: ");
-    
-    bool foundUnique = false;
-    for (int i = 0; i < size; i++) {
-        // Проверяем, является ли текущий символ уникальным
-        if (arr[i] != arr[i+1] && arr[i] != arr[i-1]) {
-            printf("%c ", arr[i]);
-            foundUnique = true;
-        }
-    }
-
-    if (!foundUnique) {
-        printf("Нет уникальных символов во введенном массиве.");
-    }
-
-    printf("\n");
-}
-
-int main() {
-    int size;
-    printf("Введите размер массива: ");
-    scanf("%d", &size);
-
-    char *arr = (char *)malloc(size * sizeof(char));
-
-    printf("Введите символы массива: ");
-    for (int i = 0; i < size; i++) {
-        scanf(" %c", &arr[i]);
-    }
-
-    printUniqueCharacters(arr, size);
-
-    free(arr);
-
-    return 0;
+#define MSG printf("Окей\n") 
+ 
+ 
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h> 
+#include <locale.h> 
+ 
+ 
+ 
+ 
+ 
+void printUniqueCharacters(char* str) { 
+ int count[ALPHABET_SIZE] = { 0 }; 
+ int length = 0; 
+ 
+ while (*str) { 
+  if (*str >= 'a' && *str <= 'z') { 
+   count[*str - 'a']++; 
+   length++; 
+  } 
+  str++; 
+ } 
+ 
+ printf("Unique characters: "); 
+ for (int i = 0; i < ALPHABET_SIZE; i++) { 
+  if (count[i] == 1) { 
+   printf("%c ", i + 'a'); 
+  } 
+ } 
+ 
+ printf("\n"); 
+} 
+ 
+void menu() { 
+ char str[100]; 
+ char choice; 
+ 
+ do { 
+  printf("1. Введите строку\n"); 
+  printf("2. Выход\n"); 
+  printf("Ваш выбор: "); 
+  fflush(stdin); 
+  scanf(" %c", &choice); 
+ 
+  switch (choice) { 
+  case '1': 
+   MSG; 
+   printf("Введите строку: "); 
+   getchar(); 
+   fgets(str, sizeof(str), stdin); 
+   printf("Результат:\n"); 
+   printUniqueCharacters(str); 
+   break; 
+  case '2': 
+   MSG; 
+   printf("Выход из программы...\n"); 
+   exit(0); 
+  default: 
+   printf("Неверный выбор.\n Повторите попытку.\n"); 
+  } 
+ 
+  printf("\n"); 
+ } while (1); 
+} 
+ 
+int main() { 
+ setlocale(LC_ALL, "Rus"); 
+ menu(); 
+ return 0; 
 }
